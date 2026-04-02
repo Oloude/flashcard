@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+
+  --color-neutral900: #2e1401;
+  --color-neutral600: #6d5b4d;
+  --color-neutral100: #f7f3f0;
+  --color-neutral0: #fff;
+  --color-yellow500: #f8cb46;
+  --color-blue400: #92adeb;
+  --color-blue600: #5072c7;
+  --color-teal400: #47d9c9;
+  --color-pink400: #fc8ae5;
+  --color-pink500: #f073a3;
+  --color-pink700: #e11966;
+
+  --text-preset1: 40px;
+  --text-preset1--line-height: 120%;
+  --text-preset1--letter-spacing: 0;
+  --text-preset1--font-weight: 700;
+
+  --text-preset2: 24px;
+  --text-preset2--line-height: 120%;
+  --text-preset2--letter-spacing: 0;
+  --text-preset2--font-weight: 600;
+
+  --text-preset1T: 32px;
+  --text-preset1T--line-height: 120%;
+  --text-preset1T--letter-spacing: 0;
+  --text-preset1T--font-weight: 700;
+
+  --text-preset1M: 24px;
+  --text-preset1M--line-height: 120%;
+  --text-preset1M--letter-spacing: 0;
+  --text-preset1M--font-weight: 700;
+
+  --text-preset3: 20px;
+  --text-preset3--line-height: 120%;
+  --text-preset3--letter-spacing: 0;
+  --text-preset3--font-weight: 600;
+
+  --text-preset4: 16px;
+  --text-preset4--line-height: 140%;
+  --text-preset4--letter-spacing: 0;
+
+  --text-preset4: 16px;
+  --text-preset4--line-height: 140%;
+  --text-preset4--letter-spacing: 0;
+
+  --text-preset5: 14px;
+  --text-preset5--line-height: 140%;
+  --text-preset5--letter-spacing: 0;
+
+  --text-preset6: 12px;
+  --text-preset6--line-height: 130%;
+  --text-preset6--letter-spacing: -3%;
+}
