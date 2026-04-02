@@ -5,6 +5,8 @@
 @theme {
   --font-poppins: "Poppins", sans-serif;
 
+  --breakpoint-lg: 90rem;
+
   --color-neutral900: #2e1401;
   --color-neutral600: #6d5b4d;
   --color-neutral100: #f7f3f0;
@@ -41,10 +43,6 @@
   --text-preset3--line-height: 120%;
   --text-preset3--letter-spacing: 0;
   --text-preset3--font-weight: 600;
-
-  --text-preset4: 16px;
-  --text-preset4--line-height: 140%;
-  --text-preset4--letter-spacing: 0;
 
   --text-preset4: 16px;
   --text-preset4--line-height: 140%;
