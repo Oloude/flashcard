@@ -2,8 +2,8 @@
 
 function CardHeader() {
   return (
-    <header className="flex justify-between gap-2.5 items-start px-4 py-3 border-b border-neutral900">
-        <div className="flex flex-col gap-2">
+    <header className="flex justify-between gap-2.5 items-start px-4 py-3 border-b border-neutral900 bg-neutral0">
+        <div className="flex flex-col gap-2 md:flex-row md:items-center">
             <div className="flex items-center gap-2 px-4 text-preset4 font-medium text-neutral900 py-3 border border-neutral900 rounded-full">
                 All Categories
                 <button><img src="./icon-chevron-down.svg" alt="" /></button>

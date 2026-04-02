@@ -21,9 +21,9 @@ const stats= [
 
 function StudyStatistics() {
   return (
-    <section className="border-t border-r-[3px] border-b-[3px] border-l border-neutral900 rounded-2xl px-4 py-5 flex flex-col gap-4 bg-neutral0">
+    <section className="border-t border-r-[3px] border-b-[3px] border-l border-neutral900 rounded-2xl px-4 py-5 flex flex-col gap-4 bg-neutral0 lg:w-1/3">
         <h2 className="text-preset2 text-neutral900">Study Statistics</h2>
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
             {stats.map(stat => <StudyStats key={stat.title} {...stat}/>)}
 
         </div>
