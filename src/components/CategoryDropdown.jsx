@@ -2,7 +2,9 @@
 
 function CategoryDropdown() {
   return (
-    <div>CategoryDropdown</div>
+    <div className="flex flex-col rounded-lg border border-neutral900">
+      
+    </div>
   )
 }
 
