@@ -3,14 +3,14 @@ import CategoryDropdown from "./CategoryDropdown";
 
 function CardHeader() {
   const toggleCategoryDropdown = useFlashCard(
-    (state) => state.toggleOpenCategoryDropdown
+    (state) => state.toggleOpenCategoryDropdown,
   );
   const isOpenCategoryDropdown = useFlashCard(
-    (state) => state.isOpenCategoryDropdown
+    (state) => state.isOpenCategoryDropdown,
   );
   return (
-    <header className="flex justify-between gap-2.5 items-start px-4 py-3 border-b border-neutral900 bg-neutral0">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center relative">
+    <header className="flex justify-between gap-2.5 items-start px-4 py-3 border-b border-neutral900 bg-neutral0 ">
+      <div className="flex flex-col gap-2 relative md:flex-row md:items-center">
         <button
           onClick={toggleCategoryDropdown}
           className="flex items-center gap-2 px-4 text-preset4 font-medium text-neutral900 py-3 border border-neutral900 rounded-full"
@@ -33,7 +33,7 @@ function CardHeader() {
           />
           Hide Mastered
         </label>
-        <CategoryDropdown />
+        {isOpenCategoryDropdown && <CategoryDropdown />}
       </div>
       <button className="flex items-center gap-3 px-4 py-3 text-preset4 font-medium text-neutral900 border border-neutral900 rounded-full">
         {" "}
