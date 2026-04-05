@@ -1,9 +1,5 @@
-
-
 function CardDropdown() {
-  return (
-    <div>CardDropdown</div>
-  )
+  return <div></div>;
 }
 
-export default CardDropdown
+export default CardDropdown;
