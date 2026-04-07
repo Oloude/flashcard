@@ -1,4 +1,5 @@
 import AddNewCardForm from "./components/AddNewCardForm";
+import CardContainer from "./components/CardContainer";
 import CardHeader from "./components/CardHeader";
 import EmptyCard from "./components/EmptyCard";
 import Header from "./components/Header";
@@ -8,6 +9,7 @@ import useFlashCard from "./states/FlashCardState";
 
 function App() {
   const isStudyMode = useFlashCard((state) => state.isStudyMode);
+  const questionData = useFlashCard((state) => state.questionData);
 
   return (
     <main className="bg-neutral100 min-h-screen font-poppins px-4 pt-4 pb-10 flex flex-col md:px-8 md:pt-5 md:pb-16 gap-6 lg:gap-8 lg:py-6 lg:px-25">
@@ -23,7 +25,7 @@ function App() {
       ) : (
         <section className="flex flex-col gap-8">
           <AddNewCardForm />
-          <NoCard />
+          {questionData.length === 0 ? <NoCard /> : <CardContainer />}
         </section>
       )}
     </main>

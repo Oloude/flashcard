@@ -1,7 +1,7 @@
 import useFlashCard from "../states/FlashCardState.js";
 import CategoryDropdown from "./CategoryDropdown";
 
-function CardHeader() {
+function CardHeader({ plain }) {
   const toggleCategoryDropdown = useFlashCard(
     (state) => state.toggleOpenCategoryDropdown,
   );
@@ -9,7 +9,9 @@ function CardHeader() {
     (state) => state.isOpenCategoryDropdown,
   );
   return (
-    <header className="flex justify-between gap-2.5 items-start px-4 py-3 border-b border-neutral900 bg-neutral0 ">
+    <header
+      className={`flex justify-between gap-2.5 items-start px-4 py-3 ${plain ? "" : " border-b border-neutral900 bg-neutral0"}`}
+    >
       <div className="flex flex-col gap-2 relative md:flex-row md:items-center">
         <button
           onClick={toggleCategoryDropdown}

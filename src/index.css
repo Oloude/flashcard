@@ -56,6 +56,8 @@
   --text-preset6--line-height: 130%;
   --text-preset6--letter-spacing: -3%;
 
-  --shadow-header: 1px 2px 0 0 #2E1401;
-  --shadow-emptyBtn : 2px 2px 0 0 #2e1401;
+  --shadow-header: 1px 2px 0 0 #2e1401;
+  --shadow-emptyBtn: 2px 2px 0 0 #2e1401;
+  --shadow-dropdown: 0 3px 8px 0 rgba(46, 20, 1, 0.2);
+  --shadow-category: 1px 1px 0 0 #000;
 }
