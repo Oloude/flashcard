@@ -1,7 +1,45 @@
+import { useState } from "react";
+import { MdError } from "react-icons/md";
+
 function AddNewCardForm() {
+  const [formData, setFormData] = useState({
+    question: "",
+    answer: "",
+    category: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({
+    question: "",
+    answer: "",
+    category: "",
+  });
+
+  function handleFormDataChange(name, value) {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const errors = {};
+    if (!formData.question.trim()) {
+      errors.question = "Please enter a question.";
+    }
+    if (!formData.answer.trim()) {
+      errors.answer = "Please enter an answer.";
+    }
+    if (!formData.category.trim()) {
+      errors.category = "Please enter a category.";
+    }
+
+    setFormErrors(errors);
+    console.log(errors);
+    console.log(formErrors);
+    return;
+  }
   return (
     <form
       action=""
+      onSubmit={handleSubmit}
       className="flex flex-col gap-6 rounded-2xl border border-b-4 border-r-4 border-neutral900 bg-neutral0 p-4 md:p-8"
     >
       <div className="flex flex-col gap-4">
@@ -14,11 +52,19 @@ function AddNewCardForm() {
           </label>
           <input
             type="text"
-            name=""
+            name="question"
             id="question"
-            className="p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none"
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none ${formErrors.question ? "border-pink700 border-r-2 border-b-2" : ""}`}
             placeholder="e.g., What is the capital of France?"
+            value={formData.question}
+            onChange={(e) => handleFormDataChange("question", e.target.value)}
           />
+          {formErrors.question && (
+            <span className="flex items-center gap-1 text-preset5 text-pink700">
+              <MdError className="w-3.5 h-3.5 text-pink700" /> Please enter a
+              question.
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <label
@@ -27,15 +73,25 @@ function AddNewCardForm() {
           >
             Answer
           </label>
-          <div className="p-4 border border-neutral900 bg-neutral0 rounded-md  h-25 ">
+          <div
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md h-25  ${formErrors.answer ? "border-pink700 border-r-2 border-b-2" : ""}`}
+          >
             <input
               type="text"
-              name=""
+              name="answer"
               id="answer"
               className="outline-none text-preset4 text-neutral600"
               placeholder="e.g., Paris"
+              value={formData.answer}
+              onChange={(e) => handleFormDataChange("answer", e.target.value)}
             />
           </div>
+          {formErrors.answer && (
+            <span className="flex items-center gap-1 text-preset5 text-pink700">
+              <MdError className="w-3.5 h-3.5 text-pink700" /> Please enter an
+              answer.
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <label
@@ -46,11 +102,19 @@ function AddNewCardForm() {
           </label>
           <input
             type="text"
-            name=""
+            name="category"
             id="category"
-            className="p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none"
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none ${formErrors.category ? "border-pink700 border-r-2 border-b-2" : ""}`}
             placeholder="e.g., Geography"
+            value={formData.category}
+            onChange={(e) => handleFormDataChange("category", e.target.value)}
           />
+          {formErrors.category && (
+            <span className="flex items-center gap-1 text-preset5 text-pink700">
+              <MdError className="w-3.5 h-3.5 text-pink700" /> Please enter a
+              category.
+            </span>
+          )}
         </div>
       </div>
       <button className=" shadow-emptyBtn bg-yellow500 text-neutral900 px-5 py-3 rounded-full border border-neutral900 text-preset4 font-semibold flex items-center gap-2 self-start">
