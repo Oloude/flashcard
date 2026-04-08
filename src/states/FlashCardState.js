@@ -9,6 +9,9 @@ const useFlashCard = create((set) => ({
   isOpenCardActionDropdown: false,
   isEditModalOpen: false,
   activeCard : null,
+  isDeleteModalOpen : false,
+  openDeleteModal : (id) => set(state => ({activeCard : id, isDeleteModalOpen : true, isOpenCardActionDropdown: false})),
+  closeDeleteModal : () => set(state => ({activeCard: null, isDeleteModalOpen: false})),
   closeEditModal: ()=> set(state => ({isEditModalOpen : false, activeCard:null})),
   openEditModal : (id) => set(state => ({isEditModalOpen : true, activeCard: id, isOpenCardActionDropdown : false})),
   toggleIsOpenCardActionDropdown : (id)=> set(state => ({isOpenCardActionDropdown : state.isOpenCardActionDropdown === id ? null : id})),
@@ -22,10 +25,12 @@ const useFlashCard = create((set) => ({
   deleteFlashCard: (id) =>
     set((state) => ({
       questionData: state.questionData.filter((card) => card.id !== id),
+      isDeleteModalOpen : false
     })),
     updateFlashCard: (id, updatedFlashCard) =>
     set((state) => ({
-      questionData: state.questionData.map((card) => card.id === id ? { ...card, ...updatedFlashCard } : card),}))
+      questionData: state.questionData.map((card) => card.id === id ? { ...card, ...updatedFlashCard } : card),
+    isEditModalOpen : false}))
 }));
 
 export default useFlashCard;
