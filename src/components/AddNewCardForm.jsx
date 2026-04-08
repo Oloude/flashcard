@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { MdError } from "react-icons/md";
+import useFlashCard from "../states/FlashCardState";
 
 function AddNewCardForm() {
+  const addNewFlashCard = useFlashCard((state) => state.addNewFlashCard);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [formData, setFormData] = useState({
     question: "",
     answer: "",
@@ -32,9 +36,25 @@ function AddNewCardForm() {
     }
 
     setFormErrors(errors);
-    console.log(errors);
-    console.log(formErrors);
-    return;
+    if (Object.keys(errors).length > 0){
+return;
+    }
+     setIsSubmitting(true);
+    const newFlashCard = {
+      id: Date.now(),
+      ...formData,
+      knownCount : 0,
+    }
+   
+
+    addNewFlashCard(newFlashCard);
+    setFormData({
+      question: "",
+      answer: "",
+      category: "",
+    })
+      setIsSubmitting(false);
+    
   }
   return (
     <form
@@ -117,7 +137,11 @@ function AddNewCardForm() {
           )}
         </div>
       </div>
-      <button className=" shadow-emptyBtn bg-yellow500 text-neutral900 px-5 py-3 rounded-full border border-neutral900 text-preset4 font-semibold flex items-center gap-2 self-start">
+      <button
+        type="submit"
+        className="disabled:opacity-50 disabled:cursor-not-allowed shadow-emptyBtn bg-yellow500 text-neutral900 px-5 py-3 rounded-full border border-neutral900 text-preset4 font-semibold flex items-center gap-2 self-start"
+        disabled={isSubmitting}
+      >
         <img src="/icon-circle-plus.svg" alt="" className="w-4 h-4" />
         Create Card
       </button>

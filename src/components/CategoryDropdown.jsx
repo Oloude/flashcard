@@ -2,7 +2,8 @@ import useFlashCard from "../states/FlashCardState";
 
 function CategoryDropdown() {
   const isOpen = useFlashCard((state) => state.isOpenCategoryDropdown);
-  console.log(isOpen);
+  
+ 
   return (
     <div className="absolute top-full left-2 mt-2 w-60 flex-col border border-neutral900 rounded-lg bg-neutral0 z-50 flex shadow-dropdown divide-y divide-neutral900 font-medium">
       {[1, 2, 34, 4, 4].map((n, i) => (
