@@ -1,4 +1,11 @@
+import useFlashCard from "../states/FlashCardState";
+import CardActionDropdown from "./CardActionDropdown";
+
 function Card({ question, answer, category, knownCount, id }) {
+
+  const toggleIsOpenCardActionDropdown = useFlashCard(state => state.toggleIsOpenCardActionDropdown);
+  const activeCard = useFlashCard(state => state.isOpenCardActionDropdown);
+
   return (
     <article className="bg-neutral0 border border-b-[3px] border-r-[3px] rounded-2xl border-neutral900 divide-y divide-neutral900 flex flex-col">
       <div className="text-preset3 text-neutral900 p-4">{question}</div>
@@ -6,7 +13,7 @@ function Card({ question, answer, category, knownCount, id }) {
         <h4 className="text-preset5 text-neutral900/60">Answer</h4>
         <p className="text-preset5 text-neutral900">{answer}</p>
       </div>
-      <div className="flex items-center px-4 justify-between mt-auto gap-2">
+      <div className="flex items-center px-4 justify-between mt-auto gap-2 relative">
         <div
           className="bg-neutral0 rounded-full px-3 py-1.5 border border-neutral900 shadow-category
          text-preset6 text-neutral900 my-2.5"
@@ -31,7 +38,8 @@ function Card({ question, answer, category, knownCount, id }) {
           </div>
         )}
         <div className="w-px h-full bg-neutral900"></div>
-        <button className="w-6 h-6 flex items-center justify-center my-2.5">
+        {activeCard === id &&<CardActionDropdown id={id}/>}
+        <button onClick={()=>toggleIsOpenCardActionDropdown(id)} className="w-6 h-6 flex items-center justify-center my-2.5 hover:bg-neutral0 hover:rounded hover:border hover:border-neutral900 hover:shadow-emptyBtn">
           {" "}
           <img src="/icon-menu.svg" alt="" />
         </button>

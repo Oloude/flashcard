@@ -15,11 +15,11 @@ function CategoryDropdown() {
 
  
   return (
-    <div className="absolute top-full left-2 mt-2 w-60 flex-col border border-neutral900 rounded-lg bg-neutral0 z-50 flex shadow-dropdown divide-y divide-neutral900 font-medium">
+    <div className="absolute top-full left-2 mt-2 w-60 flex-col border border-neutral900 rounded-lg bg-neutral0 z-50 flex shadow-dropdown divide-y divide-neutral900 font-medium overflow-hidden">
       {categoryCountsArray.map((category, i) => (
         <label key={i}
           htmlFor=""
-          className="text-neutral900 px-4 py-2 w-full flex items-center gap-2 text-preset5"
+          className="text-neutral900 px-4 py-2 w-full flex items-center gap-2 text-preset5  hover:bg-neutral100"
         >
           <input type="checkbox" name="" />
           {category.category} <span className="text-neutral600">({category.count})</span>
