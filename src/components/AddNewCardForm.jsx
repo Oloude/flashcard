@@ -19,7 +19,7 @@ function AddNewCardForm() {
   });
 
   function handleFormDataChange(name, value) {
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value[0].toUpperCase() + value.slice(1) }));
   }
 
   function handleSubmit(e) {
@@ -37,7 +37,7 @@ function AddNewCardForm() {
 
     setFormErrors(errors);
     if (Object.keys(errors).length > 0){
-return;
+      return;
     }
      setIsSubmitting(true);
     const newFlashCard = {
