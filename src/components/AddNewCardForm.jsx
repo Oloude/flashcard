@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MdError } from "react-icons/md";
 import useFlashCard from "../states/FlashCardState";
+import { toast } from "react-toastify";
 
 function AddNewCardForm() {
   const addNewFlashCard = useFlashCard((state) => state.addNewFlashCard);
@@ -48,6 +49,13 @@ function AddNewCardForm() {
    
 
     addNewFlashCard(newFlashCard);
+    toast(({ closeToast }) => (
+          <div className="flex items-center justify-between gap-4 w-75 h-10 bg-neutral0 border border-neutral900 px-4 py-2.5 shadow-emptyBtn shadwo-dropdown rounded-full">
+            <p className="text-preset4 text-neutral900 font-medium font-inter">Card created successfully.</p>
+            <button onClick={closeToast}><img src="./icon-cross.svg" alt="" /></button>
+          </div>
+        ));
+
     setFormData({
       question: "",
       answer: "",
@@ -74,7 +82,7 @@ function AddNewCardForm() {
             type="text"
             name="question"
             id="question"
-            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none ${formErrors.question ? "border-pink700 border-r-2 border-b-2" : ""}`}
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none hover:shadow-emptyBtn ${formErrors.question ? "border-pink700 border-r-2 border-b-2" : ""}`}
             placeholder="e.g., What is the capital of France?"
             value={formData.question}
             onChange={(e) => handleFormDataChange("question", e.target.value)}
@@ -94,7 +102,7 @@ function AddNewCardForm() {
             Answer
           </label>
           <div
-            className={`p-4 border border-neutral900 bg-neutral0 rounded-md h-25  ${formErrors.answer ? "border-pink700 border-r-2 border-b-2" : ""}`}
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md h-25 hover:shadow-emptyBtn  ${formErrors.answer ? "border-pink700 border-r-2 border-b-2" : ""}`}
           >
             <input
               type="text"
@@ -124,7 +132,7 @@ function AddNewCardForm() {
             type="text"
             name="category"
             id="category"
-            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none ${formErrors.category ? "border-pink700 border-r-2 border-b-2" : ""}`}
+            className={`p-4 border border-neutral900 bg-neutral0 rounded-md text-preset4 text-neutral600 outline-none hover:shadow-emptyBtn ${formErrors.category ? "border-pink700 border-r-2 border-b-2" : ""}`}
             placeholder="e.g., Geography"
             value={formData.category}
             onChange={(e) => handleFormDataChange("category", e.target.value)}
@@ -139,7 +147,7 @@ function AddNewCardForm() {
       </div>
       <button
         type="submit"
-        className="disabled:opacity-50 disabled:cursor-not-allowed shadow-emptyBtn bg-yellow500 text-neutral900 px-5 py-3 rounded-full border border-neutral900 text-preset4 font-semibold flex items-center gap-2 self-start"
+        className="disabled:opacity-50 disabled:cursor-not-allowed shadow-emptyBtn hover:shadow-hover transition-all hover:cursor-pointer bg-yellow500 text-neutral900 px-5 py-3 rounded-full border border-neutral900 text-preset4 font-semibold flex items-center gap-2 self-start"
         disabled={isSubmitting}
       >
         <img src="/icon-circle-plus.svg" alt="" className="w-4 h-4" />

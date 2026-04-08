@@ -32,14 +32,16 @@ function Card({ question, answer, category, knownCount, id }) {
             <p className="text-preset6 text-neutral900">{knownCount}/5</p>
           </div>
         ) : (
-          <div className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-teal400 shadow-mastered border border-neutral900 text-neutral900 text-preset6 my-2.5">
+          <div className="flex-1 flex">
+          <div className="flex items-center gap-3 px-3 py-1.5 rounded-full  bg-teal400 shadow-mastered border border-neutral900 text-neutral900 text-preset6 my-2.5">
             <img src="./icon-mastered.svg" alt="" className="w-4 h-4" />{" "}
             Mastered 5/5
+          </div>
           </div>
         )}
         <div className="w-px h-full bg-neutral900"></div>
         {activeCard === id &&<CardActionDropdown id={id}/>}
-        <button onClick={()=>toggleIsOpenCardActionDropdown(id)} className="w-6 h-6 flex items-center justify-center my-2.5 hover:bg-neutral0 hover:rounded hover:border hover:border-neutral900 hover:shadow-emptyBtn">
+        <button onClick={()=>toggleIsOpenCardActionDropdown(id)} className="w-6 h-6 flex items-center justify-center my-2.5 hover:bg-neutral0 hover:rounded hover:border hover:border-neutral900 transition-all hover:cursor-pointer hover:shadow-emptyBtn">
           {" "}
           <img src="/icon-menu.svg" alt="" />
         </button>

@@ -19,7 +19,7 @@ function CardContainer() {
         ))}
       </div>
       <button
-        className="disabled:opacity-50 disabled:cursor-not-allowed rounded-full border border-neutral900 text-preset4 font-medium text-neutral900 px-5 py-3 shadow-emptyBtn self-center"
+        className="disabled:opacity-50 disabled:cursor-not-allowed rounded-full border border-neutral900 text-preset4 font-medium text-neutral900 px-5 py-3 shadow-emptyBtn hover:shadow-hover transition-all hover:cursor-pointer self-center"
         onClick={loadMoreCards}
         disabled={visibleCards >= questionData.length}
       >

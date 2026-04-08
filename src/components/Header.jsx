@@ -19,12 +19,12 @@ function Header() {
         className="flex gap-1 items-center p-1 border border-neutral900 bg-neutral0 shadow-header rounded-full"
       >
         <span
-          className={`px-3 py-2 text-preset4 font-semibold text-neutral900 rounded-full md:px-4 md:py-3 ${isStudyMode ? "bg-yellow500 border border-neutral900" : ""}`}
+          className={`px-3 py-2 text-preset4 font-semibold text-neutral900 rounded-full md:px-4 md:py-3 hover:cursor-pointer ${isStudyMode ? "bg-yellow500 border border-neutral900" : "hover:border hover:border-neutral900 transition-all"}`}
         >
           Study Mode
         </span>
         <span
-          className={`px-3 py-2 text-preset4 font-semibold text-neutral900 rounded-full md:px-4 md:py-3 ${isStudyMode ? "" : "bg-yellow500 border border-neutral900"}`}
+          className={`px-3 py-2 text-preset4 font-semibold text-neutral900 rounded-full md:px-4 md:py-3 hover:cursor-pointer ${isStudyMode ? "hover:border hover:border-neutral900 transition-all" : "bg-yellow500 border border-neutral900"}`}
         >
           All Cards
         </span>

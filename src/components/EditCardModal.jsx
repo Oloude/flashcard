@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useFlashCard from "../states/FlashCardState";
 import { MdError } from "react-icons/md";
+import { toast } from "react-toastify";
 
 function EditCardModal() {
     const closeEditModal = useFlashCard(state => state.closeEditModal)
@@ -46,6 +47,12 @@ function EditCardModal() {
         }
         
         updateFlashCard(activeCard, formData)
+        toast(({ closeToast }) => (
+  <div className="flex items-center justify-between gap-4 w-75 h-10 bg-neutral0 border border-neutral900 px-4 py-2.5 shadow-emptyBtn shadwo-dropdown rounded-full">
+    <p className="text-preset4 text-neutral900 font-medium font-inter">Card updated successfully.</p>
+    <button onClick={closeToast}><img src="./icon-cross.svg" alt="" /></button>
+  </div>
+));
         
         setFormErrors({question : '',
         answer : '',

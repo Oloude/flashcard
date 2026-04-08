@@ -37,7 +37,7 @@ function CardHeader({ plain }) {
         </label>
         {isOpenCategoryDropdown && <CategoryDropdown />}
       </div>
-      <button className="flex items-center gap-3 px-4 py-3 text-preset4 font-medium text-neutral900 border border-neutral900 rounded-full">
+      <button className="flex items-center gap-3 px-4 py-3 text-preset4 font-medium text-neutral900 border border-neutral900 rounded-full hover:cursor-pointer hover:bg-neutral100 transition-all">
         {" "}
         <img src="./icon-shuffle.svg" alt="" /> Shuffle
       </button>

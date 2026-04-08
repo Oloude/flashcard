@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import NoCard from "./components/NoCard";
 import StudyStatistics from "./components/StudyStatistics";
 import useFlashCard from "./states/FlashCardState";
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const isStudyMode = useFlashCard((state) => state.isStudyMode);
@@ -19,6 +20,9 @@ function App() {
     <main className="bg-neutral100 min-h-screen font-poppins px-4 pt-4 pb-10 flex flex-col md:px-8 md:pt-5 md:pb-16 gap-6 lg:gap-8 lg:py-6 lg:px-25 relative">
       {isEditModalOpen && <EditCardModal/>}
       {isDeleteModalOpen && <DeleteCardModal/>}
+      <ToastContainer hideProgressBar
+  toastClassName="bg-none shadow-none border-none p-0"
+  bodyClassName="p-0" closeButton={false}/>
       <Header />
 
       {isStudyMode ? (
