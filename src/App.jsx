@@ -4,11 +4,13 @@ import CardHeader from "./components/CardHeader";
 import DeleteCardModal from "./components/DeleteCardModal";
 import EditCardModal from "./components/EditCardModal";
 import EmptyCard from "./components/EmptyCard";
+import FlashCardContainer from "./components/FlashCardContainer";
 import Header from "./components/Header";
 import NoCard from "./components/NoCard";
+import QuestionCard from "./components/QuestionCard";
 import StudyStatistics from "./components/StudyStatistics";
 import useFlashCard from "./states/FlashCardState";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const isStudyMode = useFlashCard((state) => state.isStudyMode);
@@ -29,7 +31,8 @@ function App() {
         <div className="flex flex-col gap-4 lg:flex-row">
           <section className="flex flex-col gap-3 rounded-2xl border-t border-l border-b-[3px] border-r-[3px] border-neutral900 bg-neutral0 overflow-hidden lg:w-2/3">
             <CardHeader />
-            <EmptyCard />
+            <FlashCardContainer/>
+            
           </section>
           <StudyStatistics />
         </div>
