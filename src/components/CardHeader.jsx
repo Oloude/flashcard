@@ -9,6 +9,7 @@ function CardHeader({ plain }) {
   const isOpenCategoryDropdown = useFlashCard(
     (state) => state.isOpenCategoryDropdown,
   );
+  const hideMastered = useFlashCard(state => state.hideMastered)
 
   
   return (
@@ -34,6 +35,7 @@ function CardHeader({ plain }) {
           <input
             type="checkbox"
             name=""
+            value={hideMastered}
             onChange={(e)=> toggleHideMastered(e.target.checked)}
             className="w-4 h-4 accent-yellow500 border rounded-sm border-neutral900 hover:border-b-2 hover:border-r-2"
           />

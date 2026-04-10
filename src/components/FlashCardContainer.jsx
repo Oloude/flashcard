@@ -1,7 +1,8 @@
 import QuestionCard from "./QuestionCard"
 import useFlashCard from "../states/FlashCardState"
 import AnswerCard from "./AnswerCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import NoMoreCards from "./NoMoreCards"
 
 
 function FlashCardContainer() {
@@ -11,9 +12,61 @@ function FlashCardContainer() {
     const incrementKnownCount = useFlashCard(state => state.incrementKnownCount)
     const resetKnownCount = useFlashCard(state => state.resetKnownCount)
     const [activeNumber, setActiveNumber] = useState(0)
+    const category = useFlashCard(state => state.category)
+    const hideMastered = useFlashCard(state => state.hideMastered)
 
-    const activeFlashCard = questionData[activeNumber]
-    const knownCount = activeFlashCard.knownCount
+    // let flashCards = questionData
+
+    // if(hideMastered){
+    //  flashCards = flashCards.filter(card => card.knownCount < 5)
+    // }
+    // if(category.length > 0){
+    //   flashCards = flashCards.filter(card => category.includes(card.category))
+    // }
+
+    // let flashCards = questionData.filter(card => category.includes(card.category)).filter(card => hideMastered
+    //   ? card.knownCount <0 : card
+    // )
+
+
+    // const activeFlashCard = flashCards[activeNumber]
+    // const knownCount = activeFlashCard.knownCount
+
+    const flashCards = questionData
+  .filter(card => !hideMastered || card.knownCount < 5)
+  .filter(card => category.length === 0 || category.includes(card.category));
+
+//   if(flashCards.length === 0){
+// return <NoMoreCards/>
+//     }
+
+
+// useEffect(() => {
+//   setActiveNumber((prev) =>
+//     Math.min(prev, flashCards.length - 1)
+//   );
+// }, [flashCards.length]);
+
+// const activeFlashCard = flashCards[activeNumber];
+// const knownCount = activeFlashCard?.knownCount ?? 0;
+
+
+
+useEffect(() => {
+  setActiveNumber((prev) =>
+    Math.min(prev, flashCards.length - 1)
+  );
+}, [flashCards.length]);
+
+if (flashCards.length === 0) {
+  return <NoMoreCards/>;
+}
+
+const activeFlashCard = flashCards[activeNumber];
+
+if (!activeFlashCard) return null; 
+
+const knownCount = activeFlashCard.knownCount;
 
     function handlePrev(){
       setActiveNumber(prev => prev === 0 ? 0 : prev - 1)
@@ -23,8 +76,9 @@ function FlashCardContainer() {
       setActiveNumber(prev => prev === questionData.length -1 ? prev : prev + 1)
     }
 
-
+    
   return (
+   
     <section className="w-full flex flex-col">
         <div className="p-5 border-b border-neutral900 flex flex-col gap-5">
             <div onClickCapture={toggleShowAnswer} className="w-full h-90 border-2 border-neutral900 rounded-2xl shadow-emptyBtn overflow-hidden relative">
@@ -65,8 +119,8 @@ function FlashCardContainer() {
 
         <div className="flex items-center justify-between p-5">
             <button disabled={activeNumber === 0} onClick={handlePrev} className="text-neutral900 px-3 md:px-4 py-3 bg-neutral0 border border-neutral900 rounded-full flex items-center gap-2 text-preset4 font-medium"><img src="/icon-chevron-left.svg" alt="" /><span className="hidden md:inline">Previous</span></button>
-            <div className="text-preset5 text-neutral600">Card {activeNumber + 1} of {questionData.length}</div>
-            <button disabled={activeNumber === questionData.length - 1} onClick={handleNext} className="text-neutral900 px-3 md:px-4 py-3 bg-neutral0 border border-neutral900 rounded-full flex items-center gap-2 text-preset4 font-medium"><span className="hidden md:inline">Next</span><img src="/icon-chevron-right.svg" alt="" /></button>
+            <div className="text-preset5 text-neutral600">Card {activeNumber + 1} of {flashCards.length}</div>
+            <button disabled={activeNumber === flashCards.length - 1} onClick={handleNext} className="text-neutral900 px-3 md:px-4 py-3 bg-neutral0 border border-neutral900 rounded-full flex items-center gap-2 text-preset4 font-medium"><span className="hidden md:inline">Next</span><img src="/icon-chevron-right.svg" alt="" /></button>
         </div>
 
     </section>

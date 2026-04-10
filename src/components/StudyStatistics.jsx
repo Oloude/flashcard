@@ -3,21 +3,27 @@ import useFlashCard from "../states/FlashCardState";
 
 function StudyStatistics() {
   const questionData = useFlashCard((state) => state.questionData);
+  const category = useFlashCard(state => state.category)
+  const hideMastered = useFlashCard(state => state.hideMastered)
 
-  const mastered = questionData.filter(
+  const flashCards = questionData
+  .filter(card => !hideMastered || card.knownCount < 5)
+  .filter(card => category.length === 0 || category.includes(card.category));
+
+  const mastered = flashCards.filter(
     (question) => question.knownCount >= 5,
   ).length;
-  const inProgress = questionData.filter(
+  const inProgress = flashCards.filter(
     (question) => question.knownCount > 0 && question.knownCount < 5,
   ).length;
-  const notStarted = questionData.filter(
+  const notStarted = flashCards.filter(
     (question) => question.knownCount === 0,
   ).length;
 
   const stats = [
     {
       title: "Total cards",
-      stats: questionData.length,
+      stats: flashCards.length,
     },
     {
       title: "Mastered",
