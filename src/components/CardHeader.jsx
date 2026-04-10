@@ -2,12 +2,15 @@ import useFlashCard from "../states/FlashCardState.js";
 import CategoryDropdown from "./CategoryDropdown";
 
 function CardHeader({ plain }) {
+  const toggleHideMastered = useFlashCard(state => state.toggleHideMastered)
   const toggleCategoryDropdown = useFlashCard(
     (state) => state.toggleOpenCategoryDropdown,
   );
   const isOpenCategoryDropdown = useFlashCard(
     (state) => state.isOpenCategoryDropdown,
   );
+
+  
   return (
     <header
       className={`flex justify-between gap-2.5 items-start px-4 py-3 ${plain ? "" : " border-b border-neutral900 bg-neutral0"}`}
@@ -31,6 +34,7 @@ function CardHeader({ plain }) {
           <input
             type="checkbox"
             name=""
+            onChange={(e)=> toggleHideMastered(e.target.checked)}
             className="w-4 h-4 accent-yellow500 border rounded-sm border-neutral900 hover:border-b-2 hover:border-r-2"
           />
           Hide Mastered

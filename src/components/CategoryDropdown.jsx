@@ -1,8 +1,12 @@
+import { useState } from "react";
 import useFlashCard from "../states/FlashCardState";
 
 function CategoryDropdown() {
   const isOpen = useFlashCard((state) => state.isOpenCategoryDropdown);
   const questionData = useFlashCard((state) => state.questionData);
+  const [selectedCategories, setSelectedCategories] = useState([])
+  const handleCategory = useFlashCard(state => state.handleCategory)
+  const category = useFlashCard(state => state.category)
 
   const categoryCounts =questionData.reduce((count, card)=> {
     count[card.category] = (count[card.category ] || 0) + 1;
@@ -10,8 +14,22 @@ function CategoryDropdown() {
 
   }, {});
 
+  console.log(category)
+
+
+
   const categoryCountsArray = Object.entries(categoryCounts).map(([category, count]) => ({ category, count }));
 
+  function handleAddeCheckedCategory(category){
+    setSelectedCategories((prev) => {
+    const updated = prev.includes(category)
+      ? prev.filter((item) => item !== category)
+      : [...prev, category];
+
+    handleCategory(updated); 
+    return updated;
+  });
+  }
 
  
   return (
@@ -21,7 +39,8 @@ function CategoryDropdown() {
           htmlFor=""
           className="text-neutral900 px-4 py-2 w-full flex items-center gap-2 text-preset5  hover:bg-neutral100"
         >
-          <input type="checkbox" name="" />
+          <input type="checkbox" name="" checked={selectedCategories.includes(category.category)}
+        onChange={() => handleAddeCheckedCategory(category.category)} />
           {category.category} <span className="text-neutral600">({category.count})</span>
         </label>
       ))}

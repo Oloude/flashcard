@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import data from "../data.json";
-import { useActionState } from "react";
 
 const useFlashCard = create((set) => ({
   questionData: data.flashcards,
@@ -11,6 +10,10 @@ const useFlashCard = create((set) => ({
   activeCard: null,
   isDeleteModalOpen: false,
   isShowAnswer: false,
+  hideMastered: false,
+  category: [],
+  handleCategory : (category) => set(state => ({category})),
+  toggleHideMastered : (isChecked)=> set(state => ({hideMastered : isChecked})),
   toggleShowAnswer: () =>
     set((state) => ({ isShowAnswer: !state.isShowAnswer })),
   openDeleteModal: (id) =>
@@ -53,6 +56,12 @@ const useFlashCard = create((set) => ({
       ),
       isEditModalOpen: false,
     })),
+   incrementKnownCount : (id)=> set(state => ({
+    questionData : state.questionData.map(card => card.id === id  ? {...card, knownCount: card.knownCount + 1 }: card )
+   })), 
+   resetKnownCount : (id)=> set(state => ({
+    questionData : state.questionData.map(card => card.id === id ? {...card, knownCount: 0} : card)
+   }))
 }));
 
 export default useFlashCard;
