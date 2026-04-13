@@ -11,11 +11,14 @@ const useFlashCard = create((set) => ({
   isDeleteModalOpen: false,
   isShowAnswer: false,
   hideMastered: false,
+  isShuffled : false,
   category: [],
+  toggleIsShuffled: ()=> set(state => ({isShuffled : !state.isShuffled})),
   handleCategory : (category) => set(state => ({category})),
   toggleHideMastered : (isChecked)=> set(state => ({hideMastered : isChecked})),
   toggleShowAnswer: () =>
     set((state) => ({ isShowAnswer: !state.isShowAnswer })),
+  closeShowAnswer : ()=> set(state => ({isShowAnswer : false})),
   openDeleteModal: (id) =>
     set((state) => ({
       activeCard: id,

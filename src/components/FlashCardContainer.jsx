@@ -1,7 +1,7 @@
 import QuestionCard from "./QuestionCard"
 import useFlashCard from "../states/FlashCardState"
 import AnswerCard from "./AnswerCard"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import NoMoreCards from "./NoMoreCards"
 
 
@@ -14,6 +14,8 @@ function FlashCardContainer() {
     const [activeNumber, setActiveNumber] = useState(0)
     const category = useFlashCard(state => state.category)
     const hideMastered = useFlashCard(state => state.hideMastered)
+    const closeShowAnswer = useFlashCard(state => state.closeShowAnswer)
+    const isShuffled = useFlashCard(state => state.isShuffled)
 
     // let flashCards = questionData
 
@@ -32,9 +34,40 @@ function FlashCardContainer() {
     // const activeFlashCard = flashCards[activeNumber]
     // const knownCount = activeFlashCard.knownCount
 
-    const flashCards = questionData
-  .filter(card => !hideMastered || card.knownCount < 5)
-  .filter(card => category.length === 0 || category.includes(card.category));
+    function shuffleArray(array) {
+  const newArray = [...array];
+
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+
+  return newArray;
+}
+
+  const filteredCards = useMemo(() => {
+  return questionData
+    .filter(card => !hideMastered || card.knownCount < 5)
+    .filter(card => category.length === 0 || category.includes(card.category));
+}, [questionData, hideMastered, category]);
+
+  const [shuffledCards, setShuffledCards] = useState([]);
+
+  function handleShuffle() {
+  const shuffled = shuffleArray(filteredCards);
+  setShuffledCards(shuffled);
+  setActiveNumber(0);
+}
+
+ 
+
+const flashCards = isShuffled ? shuffledCards : filteredCards;
+
+console.log(flashCards)
+
+  useEffect(()=>{
+    setActiveNumber(0)
+  }, [category])
 
 //   if(flashCards.length === 0){
 // return <NoMoreCards/>
@@ -74,6 +107,7 @@ const knownCount = activeFlashCard.knownCount;
 
     function handleNext(){
       setActiveNumber(prev => prev === questionData.length -1 ? prev : prev + 1)
+      closeShowAnswer()
     }
 
     
